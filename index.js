@@ -1,19 +1,29 @@
 'use strict';
 
-const readProjectFile = require('./readProjectFile');
-const _ = require('underscore');
-_.templateSettings.evaluate = /\$\{(.+?)\}/g;
+const readTemplate = require('./readTemplate');
 
-function generateConfig (type, configData, callback) {
-    readProjectFile(
-        `${type}.conf`,
-        (error, confTemplate) => {
-            if (error) {
-                callback(error, null);
-            } else {
-                const conf = _.template(confTemplate, configData);
-                callback(null, conf);
-            }
+class ConfigGenerator {
+    constructor(settings, data = null) {
+        this.setSettings(settings);
+
+        if (data) {
+            this.setData(data);
         }
-    )
+    }
+
+    setSettings(settings) {
+        this._settings = settings;
+        return this;
+    }
+
+    setData(data) {
+        this._data = data;
+        return this;
+    }
+
+    generateConfig(name, callback) {
+        callback(new Error('Not implemented yet'), '');
+    }
 }
+
+module.exports = ConfigGenerator;
