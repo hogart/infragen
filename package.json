@@ -4,8 +4,9 @@
   "description": "Opinionated yet flexible configuration file generator for nginx and supervisord",
   "main": "index.js",
   "scripts": {
-    "test": "tape ./test/*.test.js",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "unit": "nyc node test/index.js",
+    "test": "npm run lint && npm run unit"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
   "devDependencies": {
     "eslint": "^2.8.0",
     "eslint-config-yandex": "^1.0.6",
+    "nyc": "^6.4.0",
     "tape": "^4.5.1"
   },
   "eslintConfig": {
@@ -35,6 +37,99 @@
       "node": true,
       "es6": true
     },
-    "extends": "eslint-config-yandex"
+    "extends": "eslint-config-yandex",
+    "rules": {
+      "eol-last": [
+        0
+      ],
+      "comma-dangle": [
+        "error",
+        "always"
+      ],
+      "arrow-body-style": [
+        "error",
+        "as-needed"
+      ],
+      "arrow-parens": [
+        "error",
+        "always"
+      ],
+      "constructor-super": [
+        "error"
+      ],
+      "generator-star-spacing": [
+        "error",
+        {
+          "before": false,
+          "after": true
+        }
+      ],
+      "no-class-assign": [
+        "error"
+      ],
+      "no-confusing-arrow": [
+        "error"
+      ],
+      "no-const-assign": [
+        "error"
+      ],
+      "no-dupe-class-members": [
+        "error"
+      ],
+      "no-duplicate-imports": [
+        "error"
+      ],
+      "no-new-symbol": [
+        "error"
+      ],
+      "no-this-before-super": [
+        "error"
+      ],
+      "no-useless-constructor": [
+        "error"
+      ],
+      "no-var": [
+        "error"
+      ],
+      "object-shorthand": [
+        "error",
+        "always"
+      ],
+      "prefer-arrow-callback": [
+        "error",
+        {
+          "allowNamedFunctions": true
+        }
+      ],
+      "prefer-const": [
+        "error",
+        {
+          "destructuring": "all"
+        }
+      ],
+      "prefer-reflect": [
+        "off"
+      ],
+      "prefer-rest-params": [
+        "warn"
+      ],
+      "prefer-spread": [
+        "error"
+      ],
+      "prefer-template": [
+        "error"
+      ],
+      "require-yield": [
+        "error"
+      ],
+      "template-curly-spacing": [
+        "error",
+        "never"
+      ],
+      "yield-star-spacing": [
+        "error",
+        "after"
+      ]
+    }
   }
 }

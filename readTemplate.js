@@ -12,18 +12,25 @@ function readTemplate(name, callback) {
         callback(null, name);
     } else {
         readProjectFile(`templates/${name}.tpl`, (error, template) => {
-            let compiled;
+            if (error) {
+                callback(error, null);
+            } else {
+                let compiled;
 
-            try {
-                compiled = _.template(template);
-            } catch (compilationException) {
-                callback(compilationException, null);
-            }
+                try {
+                    compiled = _.template(template);
+                } catch (compilationException) {
+                    callback(compilationException, null);
+                }
 
-            if (compiled) {
-                templates.set(name, compiled);
-                callback(null, compiled);
+                if (compiled) {
+                    templates.set(name, compiled);
+                    callback(null, compiled);
+                }
+
             }
         });
     }
 }
+
+module.exports = readTemplate;

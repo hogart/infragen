@@ -7,7 +7,7 @@ function readProjectFile(name, callback) {
     fs.readFile(
         path.join(__dirname, name),
         (readFileError, fileBuffer) => {
-            callback(readFileError, fileBuffer.toString());
+            callback(readFileError, fileBuffer ? fileBuffer.toString() : null);
         }
     );
 }
